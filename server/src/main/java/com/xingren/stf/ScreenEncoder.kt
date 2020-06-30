@@ -35,11 +35,11 @@ class ScreenEncoder(private val connection: Connection, private val connKey: Any
         // 比特率，RGBA 4字节
         mediaFormat.setInteger(MediaFormat.KEY_BIT_RATE, videoRect.width() * videoRect.height() * 4)
         // 帧率
-        mediaFormat.setInteger(MediaFormat.KEY_FRAME_RATE, 30)
+        mediaFormat.setInteger(MediaFormat.KEY_FRAME_RATE, 15)
         // 颜色
         mediaFormat.setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface)
         // 关键帧 1秒
-        mediaFormat.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 10)
+        mediaFormat.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 1)
         mediaFormat.setInteger("level", MediaCodecInfo.CodecProfileLevel.AVCLevel3)
 
         mediaFormat.setLong(MediaFormat.KEY_REPEAT_PREVIOUS_FRAME_AFTER, 100_000)

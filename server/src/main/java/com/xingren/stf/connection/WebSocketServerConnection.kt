@@ -8,22 +8,22 @@ import java.nio.ByteBuffer
 /**
  * WebSocket 服务端
  */
-class WebSocketConnection : Connection, AppWebSocketServer.EventsHandler {
+class WebSocketServerConnection : Connection, AppWebSocketServer.ServerEventsHandler {
 
-    private val webSocketServer = AppWebSocketServer(this)
+    private val appWebSocketServer = AppWebSocketServer(this)
 
     private val screenEncoderMap = HashMap<WebSocket, ScreenEncoder>()
 
     init {
-        webSocketServer.isReuseAddr = true
+        appWebSocketServer.isReuseAddr = true
     }
 
-    fun start() {
-        webSocketServer.run()
+    override fun start() {
+        appWebSocketServer.run()
     }
 
-    fun stop() {
-        webSocketServer.stop()
+    override fun stop() {
+        appWebSocketServer.stop()
         screenEncoderMap.keys.forEach {
             screenEncoderMap[it]?.stop()
         }
@@ -65,9 +65,5 @@ class WebSocketConnection : Connection, AppWebSocketServer.EventsHandler {
     override fun send(connKey: Any, byteBuffer: ByteBuffer) {
         connKey as WebSocket
         connKey.send(byteBuffer)
-    }
-
-    override fun hasConnection(): Boolean {
-        return screenEncoderMap.isNotEmpty()
     }
 }

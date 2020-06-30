@@ -6,7 +6,9 @@ import java.nio.ByteBuffer
  * 数据传输链接
  */
 interface Connection {
-    fun send(connKey: Any, byteBuffer: ByteBuffer)
+    fun start()
 
-    fun hasConnection(): Boolean
+    fun stop()
+
+    fun send(connKey: Any, byteBuffer: ByteBuffer)
 }

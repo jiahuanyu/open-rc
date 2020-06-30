@@ -27,6 +27,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'org.java-websocket:Java-WebSocket:1.4.0'
+    implementation com_squareup_okhttp3_COLON_okhttp
     implementation org_jetbrains_kotlin_COLON_kotlin_CROSS_stdlib
     implementation org_jetbrains_kotlinx_COLON_kotlinx_CROSS_coroutines_CROSS_android
 }

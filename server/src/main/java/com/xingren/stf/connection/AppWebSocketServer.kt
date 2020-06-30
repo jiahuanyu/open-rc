@@ -7,12 +7,12 @@ import java.net.InetSocketAddress
 import java.nio.ByteBuffer
 
 
-class AppWebSocketServer(private val eventsHandler: EventsHandler) : WebSocketServer(InetSocketAddress(DEFAULT_PORT_NUMBER)) {
+class AppWebSocketServer(private val serverEventsHandler: ServerEventsHandler) : WebSocketServer(InetSocketAddress(DEFAULT_PORT_NUMBER)) {
     companion object {
         private const val DEFAULT_PORT_NUMBER = 8887
     }
 
-    interface EventsHandler {
+    interface ServerEventsHandler {
         fun onOpen(conn: WebSocket?, handshake: ClientHandshake?)
         fun onClose(conn: WebSocket?, code: Int, reason: String?, remote: Boolean)
         fun onMessage(conn: WebSocket?, message: String?)
@@ -22,27 +22,27 @@ class AppWebSocketServer(private val eventsHandler: EventsHandler) : WebSocketSe
     }
 
     override fun onOpen(conn: WebSocket?, handshake: ClientHandshake?) {
-        eventsHandler.onOpen(conn, handshake)
+        serverEventsHandler.onOpen(conn, handshake)
     }
 
     override fun onClose(conn: WebSocket?, code: Int, reason: String?, remote: Boolean) {
-        eventsHandler.onClose(conn, code, reason, remote)
+        serverEventsHandler.onClose(conn, code, reason, remote)
     }
 
     override fun onMessage(conn: WebSocket?, message: String?) {
-        eventsHandler.onMessage(conn, message)
+        serverEventsHandler.onMessage(conn, message)
     }
 
     override fun onMessage(conn: WebSocket?, message: ByteBuffer?) {
-        eventsHandler.onMessage(conn, message)
+        serverEventsHandler.onMessage(conn, message)
     }
 
     override fun onStart() {
-        eventsHandler.onStart()
+        serverEventsHandler.onStart()
     }
 
     override fun onError(conn: WebSocket?, ex: java.lang.Exception?) {
-        eventsHandler.onError(conn, ex)
+        serverEventsHandler.onError(conn, ex)
     }
 }
 

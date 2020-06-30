@@ -1,0 +1,22 @@
+buildscript {
+    apply from: "http://files.xingren.com/script/config.gradle"
+    repositories {
+        google()
+        jcenter()
+
+    }
+    dependencies {
+        classpath classpath_com_android_tools_build_COLON_gradle
+        classpath classpath_org_jetbrains_kotlin_COLON_kotlin_CROSS_gradle_CROSS_plugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url(maven_url)
+        }
+    }
+}

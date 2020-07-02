@@ -1,33 +1,21 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-
-android {
-    compileSdkVersion 29
-
-    defaultConfig {
-        applicationId "com.xingren.stf"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0.0"
+buildscript {
+    apply from: "http://files.xingren.com/script/config.gradle"
+    repositories {
+        google()
+        jcenter()
     }
-
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    dependencies {
+        classpath classpath_com_android_tools_build_COLON_gradle
+        classpath classpath_org_jetbrains_kotlin_COLON_kotlin_CROSS_gradle_CROSS_plugin
     }
 }
 
-dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'org.java-websocket:Java-WebSocket:1.4.0'
-    implementation com_squareup_okhttp3_COLON_okhttp
-    implementation org_jetbrains_kotlin_COLON_kotlin_CROSS_stdlib
-    implementation org_jetbrains_kotlinx_COLON_kotlinx_CROSS_coroutines_CROSS_android
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url maven_url
+        }
+    }
 }

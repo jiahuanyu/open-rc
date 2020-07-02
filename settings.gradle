@@ -1,2 +1,0 @@
-include ':server'
-rootProject.name = "xingren-stf"

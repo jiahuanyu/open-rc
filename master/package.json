@@ -12,6 +12,7 @@
   "dependencies": {
     "koa-body": "4.2.0",
     "koa2": "2.0.0-alpha.7",
+    "sqlite3": "^4.2.0",
     "ws": "7.3.0"
   },
   "devDependencies": {

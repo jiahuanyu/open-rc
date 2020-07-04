@@ -1,6 +1,6 @@
 <template>
   <div>
-    <H264Player :ip="ip"></H264Player>
+    <H264Player :deviceId="deviceId" :scale="scale"></H264Player>
   </div>
 </template>
 
@@ -10,9 +10,14 @@ import Axios from "axios";
 
 export default {
   mounted() {
-    Axios.get("http://127.0.0.1:3000/device/1")
+    const deviceId = this.$route.query.deviceId;
+    Axios.get(`http://127.0.0.1:8888/device/${deviceId}`)
       .then(response => {
         console.log(response.data);
+        if (response.data) {
+          this.deviceId = response.data.deviceId;
+          this.scale = response.data.size.height / 720.0;
+        }
       })
       .catch(error => {
         console.log(error);
@@ -23,7 +28,8 @@ export default {
   },
   data() {
     return {
-      ip: "10.10.1.228:8887"
+      deviceId: null,
+      scale: 1
     };
   }
 };

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    <PreferenceCategory android:title="@string/setting_category_normal">-->
+<!--        <Preference-->
+<!--            app:key="@string/setting_key_root_permission"-->
+<!--            app:title="获取 Root 权限" />-->
+<!--    </PreferenceCategory>-->
+
+<!--    <PreferenceCategory android:title="@string/setting_category_update">-->
+<!--        <Preference-->
+<!--            app:key="@string/setting_key_check_update"-->
+<!--            app:title="检查更新" />-->
+<!--    </PreferenceCategory>-->
+
+</PreferenceScreen>

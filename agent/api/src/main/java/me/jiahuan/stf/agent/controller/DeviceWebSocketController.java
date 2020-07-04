@@ -2,9 +2,9 @@ package me.jiahuan.stf.agent.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 import me.jiahuan.stf.agent.model.Runtime;
 import me.jiahuan.stf.agent.pojo.DeviceInfo;
+import me.jiahuan.stf.agent.pojo.Size;
 import me.jiahuan.stf.agent.pojo.WebSocketMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.UUID;
 
 @RestController
@@ -23,10 +25,12 @@ public class DeviceWebSocketController {
 
     private final String deviceId = UUID.randomUUID().toString();
 
-
     @OnOpen
     public void onOpen(Session session) {
         logger.info("onOpen deviceId = " + deviceId);
+        session.setMaxBinaryMessageBufferSize(1024000);
+        session.setMaxTextMessageBufferSize(1024000);
+        session.setMaxIdleTimeout(0);
     }
 
     @OnMessage
@@ -50,22 +54,30 @@ public class DeviceWebSocketController {
         }
 
         if ("device_join".equals(name)) {
-//            if (deviceInfo != null) {
-//                deviceInfo.setDeviceId(deviceId);
-//                Runtime.deviceList.add(deviceInfo);
-//                logger.info("有新设备加入 deviceInfo = " + deviceInfo);
-//            }
+            DeviceInfo deviceInfo = GSON.fromJson(webSocketMessage.getData(), DeviceInfo.class);
+            deviceInfo.setDeviceId(deviceId);
+            Runtime.deviceList.add(deviceInfo);
+            Runtime.deviceSessionHashMap.put(deviceId, session);
         }
     }
 
     @OnMessage
     public void onMessage(Session session, byte[] messages) {
-
+        Session clientSession = Runtime.clientSessionHashMap.get(deviceId);
+        if (clientSession == null) {
+            return;
+        }
+        try {
+            clientSession.getBasicRemote().sendBinary(ByteBuffer.wrap(messages));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @OnClose
     public void onClose(Session session) {
         logger.info("onClose session = " + session);
+        Runtime.deviceList.removeIf(deviceInfo -> deviceId.equals(deviceInfo.getDeviceId()));
         Runtime.deviceSessionHashMap.remove(deviceId);
     }
 

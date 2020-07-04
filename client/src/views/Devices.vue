@@ -1,6 +1,6 @@
 <template>
   <el-table :data="devicesData" border>
-    <el-table-column prop="id" label="ID"></el-table-column>
+    <el-table-column prop="deviceId" label="设备号"></el-table-column>
     <el-table-column prop="model" label="手机型号"></el-table-column>
     <el-table-column prop="manufacturer" label="制造厂商"></el-table-column>
     <el-table-column prop="os" label="操作系统"></el-table-column>
@@ -18,12 +18,10 @@ import Axios from "axios";
 
 export default {
   mounted() {
-    Axios.get("http://127.0.0.1:3000/devices")
+    Axios.get("http://127.0.0.1:8888/device/list")
       .then(response => {
         console.log(response.data);
-        this.devicesData = response.data.map(item => {
-          return Object.assign(item.deviceInfo, { id: item.id });
-        });
+        this.devicesData = response.data;
       })
       .catch(error => {
         console.log(error);
@@ -31,10 +29,9 @@ export default {
   },
   methods: {
     remoteControlClicked(data) {
-      console.log(data);
       this.$router.push({
         name: "DeviceDetail",
-        query: { id: data.id }
+        query: { deviceId: data.deviceId }
       });
     }
   },

@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Runtime {
-    // 设备列表
     public static List<DeviceInfo> deviceList = new ArrayList<>();
 
     public static ConcurrentHashMap<String, Session> deviceSessionHashMap = new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<String, Session> clientSessionHashMap = new ConcurrentHashMap<>();
 }

@@ -3,23 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="@string/setting_category_normal">
-<!--        <SwitchPreferenceCompat-->
-<!--            android:key="@string/setting_key_agenter_address"-->
-<!--            android:title="启动STF后台服务" />-->
-
-<!--        <EditTextPreference-->
-<!--            app:key="@string/setting_key_agenter_address"-->
-<!--            app:title="设置设备号" />-->
-
         <EditTextPreference
-            app:key="@string/setting_key_agenter_address"
-            app:title="设置 Agenter 服务端地址（包括端口号）" />
+            app:key="@string/setting_key_agent_address"
+            app:title="设置 agent 服务端地址（包括端口号）" />
     </PreferenceCategory>
-
-    <!--    <PreferenceCategory android:title="@string/setting_category_update">-->
-    <!--        <Preference-->
-    <!--            app:key="@string/setting_key_check_update"-->
-    <!--            app:title="检查更新" />-->
-    <!--    </PreferenceCategory>-->
 
 </PreferenceScreen>

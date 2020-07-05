@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import me.jiahuan.stf.device.R
-import me.jiahuan.stf.device.foreground.viewmodel.SettingFragmentViewModel
+import me.jiahuan.stf.device.foreground.data.SettingPreferenceDataStore
+import me.jiahuan.stf.device.foreground.viewmodel.HomeFragmentViewModel
 
 
 class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
@@ -14,8 +15,9 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
         const val TAG = "SettingFragment"
     }
 
-    private val viewModel by lazy {
-        ViewModelProvider(this).get(SettingFragmentViewModel::class.java)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        preferenceManager.preferenceDataStore = SettingPreferenceDataStore(requireContext())
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -24,18 +26,18 @@ class SettingFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChang
     }
 
     override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
-        if (preference?.key == resources.getString(R.string.setting_key_agenter_address)) {
-            setAgenterAddress(newValue.toString())
+        if (preference?.key == resources.getString(R.string.setting_key_agent_address)) {
+            setAgentAddress(newValue.toString())
         }
         return true
     }
 
     private fun initialize() {
-        findPreference<Preference>(resources.getString(R.string.setting_key_agenter_address))?.onPreferenceChangeListener = this
-        setAgenterAddress(preferenceManager.sharedPreferences.getString(resources.getString(R.string.setting_key_agenter_address), ""))
+        findPreference<Preference>(resources.getString(R.string.setting_key_agent_address))?.onPreferenceChangeListener = this
+        setAgentAddress(preferenceManager.sharedPreferences.getString(resources.getString(R.string.setting_key_agent_address), ""))
     }
 
-    private fun setAgenterAddress(address: String?) {
-        findPreference<Preference>(resources.getString(R.string.setting_key_agenter_address))?.summary = if (address.isNullOrBlank()) "未设置" else address
+    private fun setAgentAddress(address: String?) {
+        findPreference<Preference>(resources.getString(R.string.setting_key_agent_address))?.summary = if (address.isNullOrBlank()) "未设置" else address
     }
 }

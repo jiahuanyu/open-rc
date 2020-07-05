@@ -10,8 +10,8 @@
     <string name="setting_category_update">更新设定</string>
 
 
-    <!-- Agenter 服务端地址 -->
-    <string name="setting_key_agenter_address">setting_key_agenter_address</string>
-    <!-- 设备号 -->
-    <string name="setting_key_device_id">setting_key_device_id</string>
+    <!-- agent 服务端地址 -->
+    <string name="setting_key_agent_address">setting_key_agent_address</string>
+    <!-- stf 后台服务 -->
+    <string name="setting_key_stf_background_service">setting_key_stf_background_service</string>
 </resources>

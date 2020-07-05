@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.layout_activity_main.*
 import me.jiahuan.stf.device.R
 import me.jiahuan.stf.device.foreground.base.BaseActivity
 import me.jiahuan.stf.device.foreground.base.BaseViewModel
+import me.jiahuan.stf.device.foreground.fragment.HomeFragment
 import me.jiahuan.stf.device.foreground.fragment.SettingFragment
 
 
@@ -17,6 +18,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         private const val TAG = "MainActivity"
     }
 
+    private var homeFragment: HomeFragment? = null
     private var settingFragment: SettingFragment? = null
 
     override fun initializeViewModel(): BaseViewModel {
@@ -38,19 +40,28 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         )
         id_drawer_layout.addDrawerListener(drawerToggle)
 
-
         drawerToggle.syncState()
 
         id_navigation_view.setNavigationItemSelectedListener(this)
 
-        showFragment(R.id.id_menu_setting)
+        showFragment(R.id.id_menu_home)
     }
 
     private fun showFragment(id: Int) {
         supportFragmentManager.fragments.forEach {
             supportFragmentManager.beginTransaction().hide(it).commit()
         }
-        if (id == R.id.id_menu_setting) {
+        if (id == R.id.id_menu_home) {
+            val fragment = supportFragmentManager.findFragmentByTag(HomeFragment.TAG)
+            if (fragment != null) {
+                supportFragmentManager.beginTransaction().show(fragment).commit()
+            } else {
+                if (homeFragment == null) {
+                    homeFragment = HomeFragment()
+                }
+                supportFragmentManager.beginTransaction().add(R.id.id_fragment_container, homeFragment!!, HomeFragment.TAG).commit()
+            }
+        } else if (id == R.id.id_menu_setting) {
             val fragment = supportFragmentManager.findFragmentByTag(SettingFragment.TAG)
             if (fragment != null) {
                 supportFragmentManager.beginTransaction().show(fragment).commit()

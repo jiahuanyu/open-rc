@@ -3,9 +3,14 @@ package me.jiahuan.stf.device.background.connection
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Message
+import com.google.gson.Gson
+import me.jiahuan.stf.device.AppConstants
+import me.jiahuan.stf.device.model.Setting
+import me.jiahuan.stf.device.utils.FileUtils
 import okhttp3.*
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import java.io.File
 import java.nio.ByteBuffer
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -246,8 +251,30 @@ class AppWebSocketClient(private val clientEventsHandler: ClientEventsHandler) :
     }
 
     private fun obtainRequest(): Request {
+        val file = File(AppConstants.STF_DEVICE_SETTING_FILE_NAME_PATH)
+        if (!file.exists()) {
+            println("配置文件不存在")
+            throw AssertionError("配置文件不存在")
+        }
+        val setting = try {
+            val settingContent = FileUtils.getFileContent(file)
+            println("settingContent = $settingContent")
+            if (settingContent.isNullOrBlank()) {
+                Setting()
+            } else {
+                Gson().fromJson(settingContent, Setting::class.java)
+            }
+        } catch (e: Exception) {
+            println(e.message)
+            null
+        }
+        val address = setting?.agentAddress
+        if (address.isNullOrBlank()) {
+            println("agent 地址未配置")
+            throw AssertionError("agent 地址未配置")
+        }
         return Request.Builder()
-            .url("ws://10.10.1.225:8888/ws/device")
+            .url("ws://$address/ws/device")
             .build()
     }
 

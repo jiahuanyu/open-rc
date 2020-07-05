@@ -32,7 +32,7 @@ class BackgroundSocketService {
         val bufferedWriter = BufferedWriter(OutputStreamWriter(socket.getOutputStream()))
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                while (true) {
+                while (isActive) {
                     val readLine = bufferedReader.readLine() ?: break
                     if (AppConstants.CODE_AUTH.toString() == readLine) {
                         bufferedWriter.write(AppConstants.CODE_SUCCESS.toString())

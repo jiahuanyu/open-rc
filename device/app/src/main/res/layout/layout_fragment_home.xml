@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="statusInfoSummary"
+            type="me.jiahuan.stf.device.foreground.model.StatusInfoSummary" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@{statusInfoSummary.stfBackgroundServiceStatusInfo.success ? @color/colorSuccess : @color/colorError}"
+                        tools:background="#49B04D">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@{statusInfoSummary.stfBackgroundServiceStatusInfo.success ? @drawable/drawable_icon_done : @drawable/drawable_icon_error}"
+                            tools:src="@drawable/drawable_icon_done" />
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:text="@{statusInfoSummary.stfBackgroundServiceStatusInfo.errMessage}"
+                        android:textColor="@{statusInfoSummary.stfBackgroundServiceStatusInfo.success ? @color/colorSuccess : @color/colorError}"
+                        tools:text="Installed Magisk"
+                        tools:textColor="#49B04D" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

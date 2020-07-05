@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group
-        android:id="@+id/id_menu_group_home"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/id_menu_home"
-            android:checked="true"
-            android:title="首页" />
-    </group>
+    <!--    <group-->
+    <!--        android:id="@+id/id_menu_group_home"-->
+    <!--        android:checkableBehavior="single">-->
+    <!--        <item-->
+    <!--            android:id="@+id/id_menu_home"-->
+    <!--            android:checked="true"-->
+    <!--            android:title="首页" />-->
+    <!--    </group>-->
 
     <group
         android:id="@+id/id_menu_group_setting"
         android:checkableBehavior="single">
         <item
             android:id="@+id/id_menu_setting"
+            android:checked="true"
             android:title="设置" />
     </group>
 </menu>

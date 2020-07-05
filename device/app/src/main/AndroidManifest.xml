@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.jiahuan.stf.device">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".App"
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
 
-        <activity android:name="me.jiahuan.stf.device.client.activity.MainActivity">
+        <activity android:name="me.jiahuan.stf.device.foreground.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

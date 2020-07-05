@@ -10,6 +10,8 @@
     <string name="setting_category_update">更新设定</string>
 
 
-    <!-- 检查更新 -->
-    <string name="setting_key_check_update">setting_key_check_update</string>
+    <!-- Agenter 服务端地址 -->
+    <string name="setting_key_agenter_address">setting_key_agenter_address</string>
+    <!-- 设备号 -->
+    <string name="setting_key_device_id">setting_key_device_id</string>
 </resources>

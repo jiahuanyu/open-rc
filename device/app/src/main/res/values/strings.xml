@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">STF被控端</string>
+    <string name="app_name">OpenRC被控端</string>
     <string name="drawer_open">开</string>
     <string name="drawer_close">关</string>
 
@@ -13,5 +13,5 @@
     <!-- agent 服务端地址 -->
     <string name="setting_key_agent_address">setting_key_agent_address</string>
     <!-- stf 后台服务 -->
-    <string name="setting_key_stf_background_service">setting_key_stf_background_service</string>
+    <string name="setting_key_openrc_background_service">setting_key_openrc_background_service</string>
 </resources>

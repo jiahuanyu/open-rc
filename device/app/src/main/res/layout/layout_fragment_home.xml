@@ -7,7 +7,7 @@
 
         <variable
             name="statusInfoSummary"
-            type="me.jiahuan.stf.device.foreground.model.StatusInfoSummary" />
+            type="me.jiahuan.openrc.device.foreground.model.StatusInfoSummary" />
     </data>
 
     <ScrollView

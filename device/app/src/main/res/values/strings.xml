@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">OpenRC被控端</string>
+    <string name="drawer_open">开</string>
+    <string name="drawer_close">关</string>
+
+    <string name="setting_category_normal">常规</string>
+    <string name="setting_category_auto_login">自动登录</string>
+    <string name="setting_category_sms_forward">短信转发</string>
+    <string name="setting_category_permission">权限</string>
+    <string name="setting_category_update">更新设定</string>
+
+
+    <!-- agent 服务端地址 -->
+    <string name="setting_key_agent_address">setting_key_agent_address</string>
+    <!-- stf 后台服务 -->
+    <string name="setting_key_openrc_background_service">setting_key_openrc_background_service</string>
+</resources>

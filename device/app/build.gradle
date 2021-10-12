@@ -14,11 +14,6 @@ android {
         versionName "1.0.0"
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -42,9 +37,8 @@ android {
 
     buildTypes {
         debug {
-            splits.abi.enable = false           // 禁用多个 APK 生成
+            splits.abi.enable = false
             splits.density.enable = false
-            // 以上代码加快构建速度
             signingConfig signingConfigs.debug
             minifyEnabled false
             useProguard false
@@ -52,10 +46,10 @@ android {
         }
         release {
             signingConfig signingConfigs.release
-            minifyEnabled true // 是否混淆
+            minifyEnabled true
             useProguard true
             zipAlignEnabled true
-            shrinkResources true // 去除无用资源
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
